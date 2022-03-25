@@ -1,0 +1,33 @@
+#!/bin/bash
+sleep 0.5
+clear
+sleep 0.5
+
+BANNER() {
+printf "    ___                                            ____ \n   /   |  ____  ____  ____  __  __________        / __ \ \n  / /| | / __ \/ __ \/ __ \/ / / / __  __ \______/ /_/ /\n / ___ |/ / / / /_/ / / / / /_/ / / / / / /_____/ _  _/ \n/_/  |_/_/ /_/\____/_/ /_/\__  /_/ /_/ /_/     /_/ |_|  \n                         /____/                         "
+printf "\n\e[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+printf "\e[1;32m║ \e[1;37mAUTHOR  : Anonym-R             \e[1;32m║\n"
+printf "\e[1;32m║ \e[1;97mWebSite : https://anonym-r.ga  \e[1;32m║\n"
+printf "\e[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\e[0m"
+echo ""
+}
+BANNER
+DATA() {
+URL="https://api.whatsapp.com/send?phone=$no&text=${tex}" 
+printf "\033[37;0m┌─[ \033[31;1mDirect Send \033[32;1my/n \033[37;0m]\n└─[\033[31;1m$\033[37;0m]> \033[36;1m"
+read send
+if [[ $send == y ]];then
+termux-open $URL
+fi
+if [[ $send == n ]]; then
+echo -e "\033[34;1mSaved as send.txt"
+echo "$URL" >> send.txt
+echo -e "\nLink ==>\033[32;1m $URL"
+exit
+fi
+}
+printf "\033[37;0m┌─[ \033[31;1mInput Number Phone \033[37;0m]\n└─[\033[31;1m$\033[37;0m]>\033[36;1m +"
+read no
+printf "\033[37;0m┌─[ \033[31;1mInput Message \033[37;0m]\n└─[\033[31;1m$\033[37;0m]> \033[36;1m"
+read tex
+DATA $no $tex
